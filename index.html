@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 <!doctype html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -30,6 +27,15 @@
             <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out!</p>
             <p v-else>Out of Stock</p>
             <span v-show="onSale">On Sale!</span>
+            <ul>
+                <li v-for="detail in details">{{detail}}</li>
+            </ul>
+            <div v-for="variant in variants" :key="variant.variantId">
+                <p>{{ variant.variantColor }}</p>
+            </div>
+            <ul>
+                <li v-for="size in sizes">{{size}}</li>
+            </ul>
 
         </div>
 
