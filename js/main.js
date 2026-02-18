@@ -48,8 +48,7 @@ Vue.component('product', {
                 Add to cart
             </button>
             <button 
-            v-on:click="deleteOnCart"
-            v-if="cart != 0">
+            v-on:click="deleteOnCart">
             Delete on cart
             </button>
             <p>Shipping: {{ shipping }}</p>
