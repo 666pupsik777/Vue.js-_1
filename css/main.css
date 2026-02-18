@@ -112,3 +112,16 @@ textarea {
     margin-right: 8px;
     cursor: pointer;
 }
+.size-list {
+    list-style-type: none; /* Убирает маркеры-точки */
+    display: flex;         /* Выстраивает размеры в ряд */
+    padding: 0;
+    gap: 10px;             /* Расстояние между размерами */
+    margin-top: 20px;
+}
+
+.size-list li {
+    border: 1px solid #d8d8d8;
+    padding: 5px 10px;
+    font-size: 12px;
+}

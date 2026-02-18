@@ -15,6 +15,7 @@ Vue.component('product-review', {
         </label>
     </div>
 </p>
+
  <p>
    <label for="name">Name:</label>
    <input id="name" v-model="name" placeholder="name">
@@ -35,6 +36,7 @@ Vue.component('product-review', {
      <option>1</option>
    </select>
  </p>
+
 
  <p>
    <input type="submit" value="Submit"> 
@@ -169,6 +171,7 @@ Vue.component('product', {
             required: true
         }
     },
+    // Внутри Vue.component('product', { ... })
     template: `
    <div class="product">
     <div class="product-image">
@@ -196,6 +199,9 @@ Vue.component('product', {
                    @mouseover="updateProduct(index)"
            ></div>
           
+           <ul class="size-list">
+                <li v-for="size in sizes">{{ size }}</li>
+           </ul>
 
            <button
                    v-on:click="addToCart"
@@ -206,11 +212,6 @@ Vue.component('product', {
            </button>
            <button v-on:click="removeFromCart" :disabled="!inStock" :class="{disabledButton: !inStock}">Remove cart</button>
           
-           <ul>
-                <li v-for="size in sizes">{{ size }}</li>
-           </ul>
-
-       
        </div>
        <div>
        <product-tabs 
