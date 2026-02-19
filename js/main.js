@@ -1,11 +1,16 @@
 let eventBus = new Vue();
 Vue.component('product-review', {
     template: `
-
 <form class="review-form" @submit.prevent="onSubmit">
 
-<p>
-    <label>Would you recommend this product?</label>
+    <p v-if="errors.length">
+      <b>Please correct the following error(s):</b>
+      <ul>
+        <li v-for="error in errors">{{ error }}</li>
+      </ul>
+    </p>
+    <p>
+        <label>Would you recommend this product?</label>
     <div class="recommend-container">
         <label class="radio-label">
             <input type="radio" value="Yes" v-model="recommended"> Yes
@@ -55,7 +60,9 @@ Vue.component('product-review', {
     },
     methods: {
         onSubmit() {
-            if (this.name && this.review && this.rating) {
+            this.errors = [];
+
+            if (this.name && this.review && this.rating && this.recommended) {
                 let productReview = {
                     name: this.name,
                     review: this.review,
@@ -63,6 +70,7 @@ Vue.component('product-review', {
                     recommended: this.recommended
                 }
                 eventBus.$emit('review-submitted', productReview)
+
                 this.name = null
                 this.review = null
                 this.rating = null
@@ -71,7 +79,7 @@ Vue.component('product-review', {
                 if (!this.name) this.errors.push("Name required.")
                 if (!this.review) this.errors.push("Review required.")
                 if (!this.rating) this.errors.push("Rating required.")
-                if (!this.recommended) this.errors.push("Recommended required.")
+                if (!this.recommended) this.errors.push("Recommendation required.")
             }
         }
     }
@@ -171,7 +179,6 @@ Vue.component('product', {
             required: true
         }
     },
-    // Внутри Vue.component('product', { ... })
     template: `
    <div class="product">
     <div class="product-image">
