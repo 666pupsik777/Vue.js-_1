@@ -3,7 +3,7 @@ Vue.component('product-review', {
     template: `
 <form class="review-form" @submit.prevent="onSubmit">
 
-    <p v-if="errors.length">
+    <p v-if="errors.lengthё">
       <b>Please correct the following error(s):</b>
       <ul>
         <li v-for="error in errors">{{ error }}</li>
@@ -284,12 +284,7 @@ Vue.component('product', {
         inStock() {
             return this.variants[this.selectedVariant].variantQuantity
         },
-        sale() {
-            if (this.onSale) {
-                return this.brand + '  ' + this.product + ' Распродажа';
-            }
-            return this.brand + ' ' + this.product + ' Без распродажи';
-        },
+
         shipping() {
             if (this.premium) {
                 return "free";
